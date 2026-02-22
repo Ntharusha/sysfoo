@@ -1,0 +1,24 @@
+pipeline{
+	agent any
+	tools{
+		maven 'Maven 3.9.12'
+	}
+	stages{
+		stage('build'){
+			steps{
+				sh 'maven compile'
+			}
+		}
+		stage('test'){
+                        steps{
+                                sh 'maven clean test'
+                        }
+                }
+		stage('package'){
+                        steps{
+                                sh 'package -DskipTests'
+                        }
+                }
+
+	}
+}
